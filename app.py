@@ -1,0 +1,16 @@
+from flask import Flask,request,render_template
+
+app = Flask(__name__)
+
+@app.route("/",methods=["GET","POST"]) #run this decorator
+def index(): 
+    if request.method == "POST":
+        rate = float(request.form.get("rate")) #text to number, convert it to allow multiplication
+        return (render_template("index.html", result=(rate*-50.6)+90.2))
+    else:
+        return(render_template("index.html", result = "waiting for you to key in the exchange rate"))
+
+if __name__ =="__main__":
+    app.run()
+    
+    #you are the host, colab cannot do local host
